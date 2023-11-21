@@ -8,7 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 const slides = [
     {
         key: '1',
-        title: 'Bem-vindo(a) ao aPetit  szxdjvdkxrtdb',
+        title: 'Bem-vindo(a) ao aPetit',
         text: 'Seja bem-vindo(a) ao aplicativo aPetit. Aqui você irá satisfazer o apetite do seu pet!',
         image: require('../assets/Images/aPetitLogoCut.png')
     },
