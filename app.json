@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "apetit-app",
+    "slug": "apetit-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/Images/aPetitLogo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/Images/aPetitLogo.png",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Images/aPetitLogoWhite.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/Images/apetitLogo.png"
+    }
+  }
+}
