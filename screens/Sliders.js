@@ -3,7 +3,6 @@ import { View, StyleSheet, BackHandler, Alert, Image, Text, Dimensions, Modal, S
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-//import Checkbox from 'expo-checkbox';
 
 const slides = [
     {
