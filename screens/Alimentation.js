@@ -4,7 +4,7 @@ import {
     StyleSheet, 
     Text, 
     TouchableOpacity, 
-    Dimensions, 
+    Dimensions,  
     SafeAreaView, 
     ScrollView, 
     Image, 

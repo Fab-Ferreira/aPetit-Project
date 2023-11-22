@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, TextInput, Image, TouchableOpacity, Dimensions, StyleSheet, ScrollView, Alert, SafeAreaView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import PropsHeader from '../assets/PropsHeader';
+import PropsHeader from '../assets/PropsHeader'; 
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import { firebase, storage } from '../src/firebase.config';
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';

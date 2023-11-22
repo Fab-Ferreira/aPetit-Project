@@ -20,10 +20,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/Images/aPetitLogoWhite.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.fabtopster.apetit"
     },
     "web": {
       "favicon": "./assets/Images/apetitLogo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "934ecdbd-7236-4106-965f-77148090cba2"
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Text, TouchableOpacity, StyleSheet, Image, SafeAreaView, BackHandler, Alert } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native'; 
 
 export default function Access({navigation}){  
     const backAction = () => {

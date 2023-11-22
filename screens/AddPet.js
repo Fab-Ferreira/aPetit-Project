@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, StyleSheet, Text, TouchableOpacity, Dimensions, TextInput, Alert, SafeAreaView, BackHandler, ActivityIndicator, Image } from 'react-native';
-import PropsHeader from '../assets/PropsHeader';
+import PropsHeader from '../assets/PropsHeader'; 
 import { lightTheme, darkTheme } from '../src/theme';
 import { firebase, auth } from '../src/firebase.config';
 import { getFirestore, getDoc, doc } from 'firebase/firestore';
