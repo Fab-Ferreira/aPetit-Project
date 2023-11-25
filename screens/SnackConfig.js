@@ -28,6 +28,12 @@ export default function SnackConfig({navigation}){
         { label: 'Definir horários', value: 1 }
     ]
 
+    const[selectedTimeOption, setSelectedTimeOption] = useState(0);
+    const radioTimeProps = [
+        { label: 'Minutos', value: 0 },
+        { label: 'Horas', value: 1 }
+    ]
+
     useEffect(()=> {
         loadFirestore();
         const actualDate = new Date();
@@ -46,15 +52,41 @@ export default function SnackConfig({navigation}){
     const snackInterval = () => {
         if(!selectedIntervalOption) {
             return(
-                <View style={[styles.info, theme.borderColor, {borderBottomWidth: 1}]}>
-                    <Text style={[styles.textInfo, theme.color]}>Intervalo de tempo: </Text>
-                    <TextInput
-                        style={[styles.inputTextInfo, theme.color, theme.borderColor]}
-                        value={period}
-                        onChangeText={setPeriod}
-                        placeholder='Em horas'
-                        keyboardType='number-pad'
-                        placeholderTextColor={theme.placeholder}/>
+                <View>
+                    <View style={[styles.info, theme.borderColor, {borderBottomWidth: 1}]}>
+                        <Text style={[styles.textInfo, theme.color]}>Intervalo de tempo: </Text>
+                        <TextInput
+                            style={[styles.inputTextInfo, theme.color, theme.borderColor]}
+                            value={period}
+                            onChangeText={setPeriod}
+                            placeholder='Intervalo'
+                            keyboardType='number-pad'
+                            placeholderTextColor={theme.placeholder}
+                            maxLength={3}/>
+                        
+                    </View>
+                    <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+                        {radioTimeProps.map((obj, i)=>(
+                            <RadioButton labelHorizontal={true} key={i} style={{margin: 10}}>
+                                <RadioButtonInput
+                                    obj={obj}
+                                    index={i}
+                                    isSelected={selectedTimeOption === i}
+                                    onPress={()=>setSelectedTimeOption(i)}
+                                    borderWidth={2}
+                                    buttonInnerColor='#28b2d6'
+                                    buttonOuterColor={theme.iconColor}
+                                    buttonSize={14}
+                                    iconInnerSize={5}/>
+                                <RadioButtonLabel
+                                    obj={obj}
+                                    index={i}
+                                    labelHorizontal={false}
+                                    onPress={()=>setSelectedTimeOption(i)}
+                                    labelStyle={[{fontFamily: 'Montserrat', marginLeft: 5, fontSize: 15}, theme.color]}/>
+                            </RadioButton>
+                        ))}
+                    </View>
                 </View>
             )
         }
@@ -75,7 +107,7 @@ export default function SnackConfig({navigation}){
                             <MaterialCommunityIcons name='plus' size={22} color='white'/>
                         </TouchableOpacity>
 
-                        <Text style={[styles.textInfo, theme.color]}>Hora(s):</Text>
+                        <Text style={[styles.textInfo, theme.color]}>Horas:</Text>
                     </View>
                     {times.length > 0 && (
                         <View style={[styles.times, theme.borderColor]}>
@@ -145,11 +177,12 @@ export default function SnackConfig({navigation}){
                         times.map((item) => (
                             item
                         ))
-                    } : {period: parseInt(period)})
+                    } : {period: selectedTimeOption? parseInt(period) * 60 : parseInt(period)})
             },
 
             pet_registered: true,
         }
+
         
         await updateDoc(snackDocRef, data)
 
@@ -188,7 +221,7 @@ export default function SnackConfig({navigation}){
             <Text style={[styles.title, theme.color]}>Refeição</Text>
             <View style={[styles.info, {borderBottomWidth: 1}, theme.borderColor]}>
                 <MaterialCommunityIcons name='food-drumstick' size={25} color={theme.iconColor}/>
-                <Text style={[styles.textInfo, {marginLeft: 5}, theme.color]}>Quantidade: </Text>
+                <Text style={[styles.textInfo, {marginLeft: 5}, theme.color]}>Quantidade (g): </Text>
                 <TextInput
                     style={[styles.inputTextInfo, theme.color]}
                     placeholder='em gramas'
@@ -201,7 +234,7 @@ export default function SnackConfig({navigation}){
 
             <View style={[styles.info, {marginBottom: 20, borderBottomWidth: 1}, theme.borderColor]}>
                 <MaterialCommunityIcons name='weight-kilogram' size={25} color={theme.iconColor}/>
-                <Text style={[styles.textInfo, {marginLeft: 5}, theme.color]}>Estoque: </Text>
+                <Text style={[styles.textInfo, {marginLeft: 5}, theme.color]}>Estoque (kg): </Text>
                 <TextInput
                     style={[styles.inputTextInfo, theme.color, theme.borderColor]}
                     placeholder='em quilos'
@@ -301,7 +334,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         width: 120,
         paddingVertical: 3,
-        textAlign: 'center'
+        marginLeft: 10,
     },
 
     expirationDateView: {

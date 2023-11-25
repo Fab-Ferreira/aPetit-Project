@@ -91,7 +91,7 @@ export default function AddPetInfo({navigation}){
                         birthdate: date.toLocaleDateString('pt-BR').toString(),
                         animal: selectedAnimalOption? 'Gato' : 'Cachorro',
                         image: petImage,
-                        weight: parseFloat(petWeight)
+                        weight: parseInt(petWeight)
                     }
                 }
 
@@ -273,22 +273,22 @@ export default function AddPetInfo({navigation}){
                                         index={i}
                                         labelHorizontal={false}
                                         onPress={()=>setSelectedSizeOption(i)}
-                                        labelStyle={[{fontFamily: 'Montserrat', marginLeft: 5, fontSize: 15}, theme.color]}/>
+                                        labelStyle={[{fontFamily: 'Montserrat', marginLeft: 2, fontSize: 14}, theme.color]}/>
                                 </RadioButton>
                             ))}
                         </RadioForm>
 
-                        <View style={styles.info}>
+                        <View style={[styles.info, {borderBottomWidth: 1, paddingBottom: 5}]}>
                             <MaterialCommunityIcons name='weight-kilogram' size={25} color={theme.iconColor}/>
-                            <Text style={[styles.textInfo, {marginLeft: 5, flex: 0.25}, theme.color]}>Peso:</Text>
+                            <Text style={[styles.textInfo, {marginLeft: 5, flex: 0.5}, theme.color]}>Peso (kg):</Text>
                             <TextInput
-                                placeholder='Peso (em kg)'
+                                placeholder='quilos'
                                 keyboardType='decimal-pad'
                                 style={[styles.textInput, theme.color]}
                                 onChangeText={setPetWeight}
                                 value={petWeight}
                                 placeholderTextColor={theme.placeholder}
-                                maxLength={3}/>
+                                maxLength={2}/>
                         </View>
                     </View>
 

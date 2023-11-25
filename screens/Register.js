@@ -65,8 +65,6 @@ export default function Register({navigation}){
         }
     }
 
-    
-    
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
@@ -125,7 +123,7 @@ export default function Register({navigation}){
                     </TouchableOpacity>
                 </View>
             </View>
-
+        
             <View style={styles.textType}>
                 <View style={styles.textTypeContainer}>
                     <MaterialCommunityIcons 
@@ -144,6 +142,7 @@ export default function Register({navigation}){
                     </TouchableOpacity>
                 </View>
             </View>
+            
 
             <TouchableOpacity onPress={newUser} style={[styles.btnJoin, {backgroundColor: isButtonEnabled? '#ff9b4f' : '#ffc89e'}]} disabled={!isButtonEnabled}>
                 <Text style={styles.btnJoinText}>Criar</Text>

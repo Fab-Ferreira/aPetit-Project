@@ -13,7 +13,7 @@ export default props => {
 const styles = StyleSheet.create({
     btn: {
         alignItems: 'center',
-        width: 60,
+        width: 65,
     },
 
     text: {

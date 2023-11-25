@@ -32,11 +32,16 @@ export default function EditPet({navigation}){
     const[petWeight, setPetWeight] = useState('');
     const[snackAmount, setSnackAmount] = useState('');
     const[snackStorage, setSnackStorage] = useState('');
+    const[snackIntervalType, setSnackIntervalType] = useState('');
     const[showBirthdate, setShowBirthdate] = useState(false);
     const[showExpirationDate, setShowExpirationDate] = useState(false);
+    const[showInitialDate, setShowInitialDate] = useState(false);
     const[theme, setTheme] = useState(lightTheme);
     const[petBirthdate, setPetBirthdate] = useState(new Date());
     const[snackExpirationDate, setSnackExpirationDate] = useState(new Date());
+    const[snackInitialDate, setSnackInitialDate] = useState(new Date());
+    const[times, setTimes] = useState(undefined);
+    const[period, setPeriod] = useState(undefined);
 
     const[selectedAnimalOption, setSelectedAnimalOption] = useState(0);
     const radioAnimalProps = [
@@ -67,6 +72,7 @@ export default function EditPet({navigation}){
         setPetWeight(data.petData.weight.toString());
         setSnackAmount(data.snackData.amount.toString());
         setSnackStorage(data.snackData.storage.toString());
+        setSnackIntervalType(data.snackData.interval_type.toString());
         setTheme(data.dark_theme? darkTheme : lightTheme);
         setIsLoaded(true);
 
@@ -76,7 +82,17 @@ export default function EditPet({navigation}){
 
         const expirationString = data.snackData.expiration_date;
         const [dayE, monthE, yearE] = expirationString.split('/');
-        setSnackExpirationDate(new Date(`${yearE}-${monthE}-${dayE}`))
+        setSnackExpirationDate(new Date(`${yearE}-${monthE}-${dayE}`));
+
+        const initialString = data.snackData.initial_date;
+        const [dayI, monthI, yearI] = initialString.split('/');
+        setSnackInitialDate(new Date(`${yearI}-${monthI}-${dayI}`));
+
+        if(data.snackData.interval_type === 'Period'){
+            setPeriod(data.snackData.period)
+        } else {
+            setTimes(data.snackData.times)
+        }
     }
 
     const loadImage = () => {
@@ -130,7 +146,12 @@ export default function EditPet({navigation}){
 
                                 snackData: {
                                     amount: parseInt(snackAmount),
-                                    expiration_date: snackExpirationDate.toLocaleDateString('pt-BR').toString() 
+                                    expiration_date: snackExpirationDate.toLocaleDateString('pt-BR').toString(),
+                                    storage: parseInt(snackStorage),
+                                    initial_date: snackInitialDate.toLocaleDateString('pt-BR').toString(),
+                                    interval_type: snackIntervalType,
+                                    ...(snackIntervalType === 'Custom_Time'? 
+                                        {times: times} : {period: period})
                                 }
                             }
 
@@ -194,6 +215,14 @@ export default function EditPet({navigation}){
             setPetBirthdate(currentDate);
         }
         setShowBirthdate(false);
+    }
+
+    const onChangeInitialDate = ({type}, selectedDate) => {
+        if(type == "set"){
+            const currentDate = selectedDate;
+            setSnackInitialDate(currentDate);
+        }
+        setShowInitialDate(false);
     }
 
     const onChangeExpirationDate = ({type}, selectedDate) => {
@@ -309,23 +338,33 @@ export default function EditPet({navigation}){
                             <Text style={[styles.text, theme.color]}>Quantidade (g):</Text>
                             <TextInput
                                 style={[styles.textInput, theme.color]}
-                                placeholder='em gramas'
+                                placeholder='gramas'
                                 value={snackAmount}
                                 onChangeText={setSnackAmount}
                                 keyboardType='number-pad'
-                                maxLength={3}/>
+                                maxLength={3}
+                                placeholderTextColor={theme.placeholder}/>
                         </View>
                         <View style={[styles.info, theme.borderColor]}>
                             <MaterialCommunityIcons name='weight-kilogram' size={25} color={theme.iconColor}/>
                             <Text style={[styles.text, theme.color]}>Estoque (kg):</Text>
                             <TextInput
                                 style={[styles.textInput, theme.color]}
-                                placeholder='em quilos'
+                                placeholder='quilos'
                                 value={snackStorage}
                                 onChangeText={setSnackStorage}
                                 keyboardType='number-pad'
-                                maxLength={2}/>
+                                maxLength={2}
+                                placeholderTextColor={theme.placeholder}/>
                         </View>
+                        <View style={[styles.info, {borderBottomWidth: 0}]}>
+                            <MaterialCommunityIcons name='calendar' size={25} color={theme.iconColor}/>
+                            <Text style={[styles.text, theme.color]}>Reabastecimento:</Text>
+                        </View>
+                        <TouchableOpacity style={[styles.birthdateInput, theme.borderColor]} onPress={()=>setShowInitialDate(true)}>
+                            <Text style={[styles.birthdateText, theme.color]}>{snackInitialDate.toLocaleDateString('pt-BR').toString()}</Text>
+                        </TouchableOpacity>
+
                         <View style={[styles.info, {borderBottomWidth: 0}]}>
                             <MaterialCommunityIcons name='calendar-alert' size={25} color={theme.iconColor}/>
                             <Text style={[styles.text, theme.color]}>Validade:</Text>
@@ -333,12 +372,24 @@ export default function EditPet({navigation}){
                         <TouchableOpacity style={[styles.birthdateInput, theme.borderColor]} onPress={()=>setShowExpirationDate(true)}>
                             <Text style={[styles.birthdateText, theme.color]}>{snackExpirationDate.toLocaleDateString('pt-BR').toString()}</Text>
                         </TouchableOpacity>
+
                         {showBirthdate && (
                             <DateTimePicker
                                 mode='date'
                                 display='spinner'
                                 value={petBirthdate}
                                 onChange={onChangeBirthdate}
+                                cancelable={true}
+                                maximumDate={new Date()}
+                            />
+                        )}
+
+                        {showInitialDate && (
+                            <DateTimePicker
+                                mode='date'
+                                display='spinner'
+                                value={snackInitialDate}
+                                onChange={onChangeInitialDate}
                                 cancelable={true}
                                 maximumDate={new Date()}
                             />
@@ -474,6 +525,7 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         width: Dimensions.get('screen').width * 0.75,
         borderRadius: 5,
+        marginBottom: 10,
     },
 
     birthdateText: {

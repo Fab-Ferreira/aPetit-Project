@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, setPersistence, inMemoryPersistence } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -12,15 +12,5 @@ const firebaseConfig = {
 };
 
 export const firebase = initializeApp(firebaseConfig);
-const auth = getAuth(firebase);
+export const auth = getAuth(firebase);
 export const storage = getStorage(firebase);
-
-setPersistence(auth, inMemoryPersistence)
-.then(()=>{
-    console.log('Connected', inMemoryPersistence);
-})
-.catch((error)=>{
-    console.log('Disconnected')
-})
-
-export {auth};

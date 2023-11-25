@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function AddPet({navigation}){
 
     const[petName, setPetName] = useState('');
-    const[theme, setTheme] = useState(lightTheme);
+    const theme = lightTheme;
     const[isLoaded, setIsLoaded] = useState(false);
 
     useEffect(()=> {
@@ -21,9 +21,7 @@ export default function AddPet({navigation}){
         const firestore = getFirestore(firebase);
         const docRef = doc(firestore, 'users', await AsyncStorage.getItem('userID'));
         const docSnapshot = await getDoc(docRef);
-        const data = docSnapshot.data();   
-    
-        setTheme(data.dark_theme? darkTheme : lightTheme);
+        const data = docSnapshot.data();
 
         if(data.pet_registered === true) { navigation.navigate('LoadingScreen'); }
         else { setIsLoaded(true); }

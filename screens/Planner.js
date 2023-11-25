@@ -63,7 +63,7 @@ export default function Planner({navigation}){
 
             if(intervalType === 'Period'){
                 const period = data.snackData.period;
-                const predictionDays = parseInt(((snackStorage * 1000) / (amount / period)) / 24);
+                const predictionDays = parseInt(((snackStorage * 1000) / (amount / parseInt(period / 60))) / 24);
                 
                 const originalDate = new Date(`${initialDateArray[2]}-${initialDateArray[1]}-${initialDateArray[0]}`);
                 const newDate = new Date(originalDate);
@@ -82,7 +82,6 @@ export default function Planner({navigation}){
                 const predictDate = newDate.toLocaleDateString('pt-BR').split('/');
 
                 setPredictionDate(`${predictDate[2]}-${predictDate[1]}-${predictDate[0]}`);
-                console.log(predictDate)
             }
         }
 
@@ -92,14 +91,14 @@ export default function Planner({navigation}){
 
     const customDates = {
         [expirationDate]: {
-            marked: true, 
-            dotColor: '#97562C', 
+            selected: true, 
+            selectedColor: '#97562C', 
             activeOpacity: 0,
         },
 
         [predictionDate]: {
-            marked: true, 
-            dotColor: '#e61919', 
+            selected: true,
+            selectedColor: '#e61919',
             activeOpacity: 0,
             endingDay: true,
         }
@@ -124,7 +123,7 @@ export default function Planner({navigation}){
         return(
             <View style={styles.calendarView}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Text style={[styles.title, theme.color]}>Acompanhe o relatório mensal de seu Pet</Text>
+                    <Text style={[styles.title, theme.color]}>Calendário</Text>
                     <Calendar
                         renderHeader={(date)=>(
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center' }}>
@@ -137,29 +136,29 @@ export default function Planner({navigation}){
                         hideExtraDays={true}
                         theme={{
                             calendarBackground: theme.headerColor,
-                            todayTextColor: '#ff9b4f',
+                            todayTextColor: 'white',
                             arrowColor: '#ff9b4f',
                             textDayFontSize: 19,
                             textDayHeaderFontSize: 19,
-                            dayTextColor: theme.iconColor
+                            dayTextColor: theme.iconColor,
+                            todayBackgroundColor: '#ff9b4f'
                         }}
-                        
                         hideDayNames={true}
                         markedDates={customDates}
-                        //onDayPress={handleDay}
+                        //onDayPress={handleDay} 
                         style={[{borderTopWidth: 2, borderBottomWidth: 2}, theme.borderColor]}/>
                     <View style={[styles.legendView, theme.borderColor]}>
                         <Text style={[styles.legendTitle, theme.color]}>Legenda</Text>
                         <View style={styles.legend}>
-                            <MaterialCommunityIcons name='numeric-10-circle-outline' color='#ff9b4f' size={22}/>
+                            <MaterialCommunityIcons name='numeric-10-circle' color='#ff9b4f' size={22}/>
                             <Text style={[styles.legentText, theme.color]}>Dia atual</Text>
                         </View>
                         <View style={styles.legend}>
-                            <MaterialCommunityIcons name='circle' color='#97562C' size={22}/>
-                            <Text style={[styles.legentText, theme.color]}>Data de Validade da Ração</Text>
+                            <MaterialCommunityIcons name='numeric-10-circle' color='#97562C' size={22}/>
+                            <Text style={[styles.legentText, theme.color]}>Data de validade da ração</Text>
                         </View>
                         <View style={styles.legend}>
-                            <MaterialCommunityIcons name='circle' color='#e61919' size={22}/>
+                            <MaterialCommunityIcons name='numeric-10-circle' color='#e61919' size={22}/>
                             <Text style={[styles.legentText, theme.color]}>Previsão para o fim da ração</Text>
                         </View>
                     </View>
@@ -209,7 +208,7 @@ const styles = StyleSheet.create({
         marginVertical: 40,
         textAlign: 'center',
         fontFamily: 'Montserrat-SemiBold',
-        fontSize: 21,
+        fontSize: 25,
         width: Dimensions.get('screen').width * 0.85,
         alignSelf: 'center'
     },
