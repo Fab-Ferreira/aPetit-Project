@@ -27,7 +27,6 @@ export default function Register({navigation}){
             .then((UserCredencial) => {
                 const user = UserCredencial.user;
                 Alert.alert('Bem-vindo(a)!', 'Seja bem-vindo(a) ao aPetit!');
-                
                 const firestore = getFirestore(firebase);
                 const data = {
                     userData: {
@@ -35,7 +34,6 @@ export default function Register({navigation}){
                         name: userName,
                         email: email,
                     },
-
                     dark_theme: false,
                     pet_registered: false,
                 }
@@ -48,7 +46,6 @@ export default function Register({navigation}){
                 }
 
                 setStorage();
-
                 navigation.navigate('AddPet');
             })
             .catch((error) => {
@@ -60,7 +57,6 @@ export default function Register({navigation}){
                 } else {
                     Alert.alert('Aviso!','Ocorreu um erro inesperado, tente novamente.');
                 }
-                
             })
         }
     }

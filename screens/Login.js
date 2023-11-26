@@ -43,7 +43,6 @@ export default function Login({navigation}){
                     Alert.alert('Usuário ou senha incorreta', 'Por favor, informe corretamente o endereço e-mail e a sua senha.')
                 }
                 else {
-                    console.log(error)
                     Alert.alert('Erro!', 'Ocorreu um erro inesperado ao tentar acessar a conta. Por favor, tente novamente.')
                 }
             })

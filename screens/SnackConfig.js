@@ -173,17 +173,12 @@ export default function SnackConfig({navigation}){
                 interval_type: selectedIntervalOption? 'Custom_Time' : 'Period',
                 storage: parseInt(storage),
                 ...(selectedIntervalOption? 
-                    {times: 
-                        times.map((item) => (
-                            item
-                        ))
-                    } : {period: selectedTimeOption? parseInt(period) * 60 : parseInt(period)})
+                    {times: times.map((item) => ( item ))} : {period: selectedTimeOption? parseInt(period) * 60 : parseInt(period)})
             },
 
             pet_registered: true,
         }
 
-        
         await updateDoc(snackDocRef, data)
 
         navigation.navigate('LoadingScreen')
@@ -200,15 +195,19 @@ export default function SnackConfig({navigation}){
     const onChangeTime = ({type}, selectedTime) => {
         if(type == "set"){
             const currentTime = selectedTime;
-            setTime(currentTime);
 
             const fixedHours = currentTime.getHours();
             const fixedMinutes = currentTime.getMinutes();
             const formattedHours = (fixedHours < 10) ? `0${fixedHours}` : `${fixedHours}`;
             const formattedMinutes = (fixedMinutes < 10) ? `0${fixedMinutes}` : `${fixedMinutes}`;
             const fixedTime = `${formattedHours}:${formattedMinutes}`;
+            const isDuplicate = times.includes(fixedTime);
 
-            setTimes([...times, fixedTime.toString()]);
+            if(isDuplicate){
+                Alert.alert("Horário repetido","Você já inseriu este horário. Por favor, insira um novo horário.")
+            } else{
+                setTimes([...times, fixedTime.toString()]);
+            }
         }
         setShowTimePicker(false);
     }
