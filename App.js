@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { StatusBar } from 'react-native';
+import { StatusBar, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -21,8 +21,10 @@ import EditPet from './screens/EditPet';
 import SnackConfig from './screens/SnackConfig';
 import LoadingScreen from './screens/LoadingScreen';
 
-StatusBar.setHidden(false);
+StatusBar.setHidden(true);
 StatusBar.setBarStyle('dark-content');
+
+LogBox.ignoreAllLogs();
 
 export default function App(){
 

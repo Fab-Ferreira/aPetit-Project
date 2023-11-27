@@ -98,7 +98,7 @@ export default function Planner({navigation}){
 
         [predictionDate]: {
             selected: true,
-            selectedColor: '#e61919',
+            selectedColor: '#b3003f',
             activeOpacity: 0,
             endingDay: true,
         }
@@ -158,7 +158,7 @@ export default function Planner({navigation}){
                             <Text style={[styles.legentText, theme.color]}>Data de validade da ração</Text>
                         </View>
                         <View style={styles.legend}>
-                            <MaterialCommunityIcons name='numeric-10-circle' color='#e61919' size={22}/>
+                            <MaterialCommunityIcons name='numeric-10-circle' color='#b3003f' size={22}/>
                             <Text style={[styles.legentText, theme.color]}>Previsão para o fim da ração</Text>
                         </View>
                     </View>

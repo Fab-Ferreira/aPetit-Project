@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import { View, StyleSheet, Image, Animated, SafeAreaView } from 'react-native';
 import { firebase } from 'firebase/app';
 import { auth } from '../src/firebase.config';
-import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { Auth } from 'firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Splash({navigation}){
 
@@ -10,20 +12,17 @@ export default function Splash({navigation}){
 
     useEffect(()=>{ 
         if(progress >= 100){
-            {/*const unsubscribe = onAuthStateChanged(auth, (user)=> {
-                if(user) {
-                    console.log('User: ', user.uid);
+            onAuthStateChanged(auth, async(user) => {
+                if(user){
+                    await AsyncStorage.setItem('user', user.toString());
+                    await AsyncStorage.setItem('userID', user.uid)
+                    .then(()=>{
+                        navigation.navigate('AddPet');
+                    })
                 } else {
-                    console.log('Usuário não autenticado.');
-                    navigation.navigate('Access');
+                    navigation.navigate('Sliders');
                 }
-            });
-    
-            return () => {
-                unsubscribe();
-            };*/}
-
-            navigation.navigate('Sliders')
+            })
         } else {
             setTimeout(()=>{ 
                 setProgress(progress + 1)

@@ -23,7 +23,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { lightTheme, darkTheme } from '../src/theme';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../src/firebase.config';
-import { format } from 'date-fns-tz';
 
 export default function EditPet({navigation}){
 
