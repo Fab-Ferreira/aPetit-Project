@@ -14,8 +14,8 @@ const slides = [
 
     {
         key: '2',
-        title: 'Conecte-se com o dispenser via Bluetooth', 
-        text: 'Ative sua conexão Bluetooth para poder alimentar o seu pet.', 
+        title: 'Conecte-se com o dispenser via Wi-Fi', 
+        text: 'Ative sua conexão Wi-Fi para poder alimentar o seu pet.', 
         image: require('../assets/Images/Slider/img1.png'),
         logo: require('../assets/Images/aPetitLogoCut.png')
     },
@@ -60,7 +60,7 @@ export default function Sliders({navigation}){
     const backAction = () => {
         Alert.alert(
             'Aviso!',
-            'Tem certeza que deseja sair da sua conta?',
+            'Tem certeza que deseja sair do aplicativo?',
             [
                 {
                     text: 'Cancelar',
@@ -190,7 +190,7 @@ export default function Sliders({navigation}){
                                     seguinte Razão Social/nome: Pata Amiga ltda, com nome fantasia Apetit, inscrito no
                                     CNPJ/CPF sob o nº ___, titular da propriedade intelectual sobre software, website,
                                     aplicativos, conteúdos e demais ativos relacionados à plataforma Apetit. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>1) Do objeto</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>1) Do objeto</Text> {'\n'}
                                     A plataforma visa licenciar o uso de seu software, website, aplicativos e demais
                                     ativos de propriedade intelectual, fornecendo ferramentas para auxiliar e dinamizar o
                                     dia a dia dos seus usuários.
@@ -198,7 +198,7 @@ export default function Sliders({navigation}){
                                     Automatizado para Pets.
                                     A plataforma realiza a venda à distância por meio eletrônico dos seguintes
                                     produtos ou serviços: Comedouro Apetit. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>2) Da aceitação</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>2) Da aceitação</Text> {'\n'}
                                     O presente Termo estabelece obrigações contratadas de livre e espontânea
                                     vontade, por tempo indeterminado, entre a plataforma e as pessoas físicas ou
                                     jurídicas, usuárias do OU site OU aplicativo.
@@ -207,13 +207,13 @@ export default function Sliders({navigation}){
                                     A aceitação do presente instrumento é imprescindível para o acesso e para a
                                     utilização de quaisquer serviços fornecidos pela empresa. Caso não concorde com as
                                     disposições deste instrumento, o usuário não deve utilizá-los. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>3) Do acesso dos usuários</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>3) Do acesso dos usuários</Text> {'\n'}
                                     Serão utilizadas todas as soluções técnicas à disposição do responsável pela
                                     plataforma para permitir o acesso ao serviço 24 (vinte e quatro) horas por dia, 7 (sete)
                                     dias por semana. No entanto, a navegação na plataforma ou em alguma de suas
                                     páginas poderá ser interrompida, limitada ou suspensa para atualizações,
                                     modificações ou qualquer ação necessária ao seu bom funcionamento. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>4) Do cadastro</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>4) Do cadastro</Text> {'\n'}
                                     104
                                     O acesso às funcionalidades da plataforma exigirá a realização de um cadastro
                                     prévio e, a depender dos serviços ou produtos escolhidos, o pagamento de
@@ -255,7 +255,7 @@ export default function Sliders({navigation}){
                                     todas as informações preenchidas pelo usuário no momento em que realizar ou
                                     atualizar seu cadastro, além de outras expressamente descritas na Política de
                                     Privacidade que deverá ser autorizada pelo usuário. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>5) Dos serviços ou produtos</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>5) Dos serviços ou produtos</Text> {'\n'}
                                     A plataforma poderá disponibilizar para o usuário um conjunto específico de
                                     funcionalidades e ferramentas para otimizar o uso dos serviços e produtos.
                                     Na plataforma os serviços ou produtos oferecidos estão descritos e
@@ -267,7 +267,7 @@ export default function Sliders({navigation}){
                                     deverá se informar sobre as suas especificações e sobre a sua destinação.
                                     A entrega de serviços ou produtos adquiridos na plataforma será informada no
                                     momento da finalização da compra. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>6) Dos preços</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>6) Dos preços</Text> {'\n'}
                                     A plataforma se reserva no direito de reajustar unilateralmente, a qualquer
                                     tempo, os valores dos serviços ou produtos sem consulta ou anuência prévia do
                                     usuário.
@@ -281,7 +281,7 @@ export default function Sliders({navigation}){
                                     de acordo com a forma de pagamento que venha a ser escolhida, os preços então
                                     vigentes e informados quando da contratação. Referidos dados financeiros poderão
                                     ser armazenados para facilitar acessos e contratações futuras. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>7) Da troca e devolução</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>7) Da troca e devolução</Text> {'\n'}
                                     A política de troca e devoluções da plataforma é regida conforme o Código de
                                     Defesa do Consumidor (Lei nº 8.078/90).
                                     A troca e/ou devolução do produto poderá ocorrer por:
@@ -303,14 +303,14 @@ export default function Sliders({navigation}){
                                     ou se tratar de produto ou serviço essencial, o usuário poderá optar pela substituição
                                     do produto por outro da mesma espécie ou pela reexecução do serviço, pela
                                     devolução das quantias pagas ou pelo abatimento proporcional do preço. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>8) Do suporte</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>8) Do suporte</Text> {'\n'}
                                     Em caso de qualquer dúvida, sugestão ou problema com a utilização da
                                     plataforma, o usuário poderá entrar em contato com o suporte, através do e-mail
                                     centralAtendimento@apetit.com OU telefone xxxxxx .
                                     107
                                     Estes serviços de atendimento ao usuário estarão disponíveis nos seguintes
                                     dias e horários: seg à sáb das 8h às 22h. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>9) Das responsabilidades</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>9) Das responsabilidades</Text> {'\n'}
                                     É de responsabilidade do usuário:
                                     a) defeitos ou vícios técnicos originados no próprio sistema do usuário;
                                     b) a correta utilização da plataforma, dos serviços ou produtos oferecidos,
@@ -332,7 +332,7 @@ export default function Sliders({navigation}){
                                     Não poderão ser incluídos links externos ou páginas que sirvam para fins
                                     comerciais ou publicitários ou quaisquer informações ilícitas, violentas, polêmicas,
                                     pornográficas, xenofóbicas, discriminatórias ou ofensivas. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>10) Dos direitos autorais</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>10) Dos direitos autorais</Text> {'\n'}
                                     O presente Termo de Uso concede aos usuários uma licença não exclusiva,
                                     não transferível e não sublicenciável, para acessar e fazer uso da plataforma e dos
                                     serviços e produtos por ela disponibilizados.
@@ -352,30 +352,30 @@ export default function Sliders({navigation}){
                                     vedado qualquer uso não autorizado, comercial ou não-comercial. Tais usos
                                     consistirão em violação dos direitos de propriedade intelectual da razão social Pata
                                     Amiga ltda, puníveis nos termos da legislação aplicável. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>11) Das sanções</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>11) Das sanções</Text> {'\n'}
                                     Sem prejuízo das demais medidas legais cabíveis, a razão social Pata Amiga
                                     ltda poderá, a qualquer momento, advertir, suspender ou cancelar a conta do usuário:
                                     a) que violar qualquer dispositivo do presente Termo;
                                     b) que descumprir os seus deveres de usuário;
                                     c) que tiver qualquer comportamento fraudulento, doloso ou que ofenda a
                                     terceiros. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>12) Da rescisão</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>12) Da rescisão</Text> {'\n'}
                                     A não observância das obrigações pactuadas neste Termo de Uso ou da
                                     legislação aplicável poderá, sem prévio aviso, ensejar a imediata rescisão unilateral
                                     por parte da razão social Pata Amiga ltda e o bloqueio de todos os serviços prestados
                                     ao usuário. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>13) Das alterações</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>13) Das alterações</Text> {'\n'}
                                     Os itens descritos no presente instrumento poderão sofrer alterações,
                                     unilateralmente e a qualquer tempo, por parte de Pata Amiga ltda, para adequar ou
                                     109
                                     modificar os serviços, bem como para atender novas exigências legais. As alterações
                                     serão veiculadas pelo aplicativo Apetit e o usuário poderá optar por aceitar o novo
                                     conteúdo ou por cancelar o uso dos serviços, caso seja assinante de algum serviço. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>14) Da política de privacidade</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>14) Da política de privacidade</Text> {'\n'}
                                     Além do presente Termo, o usuário deverá consentir com as disposições
                                     contidas na respectiva Política de Privacidade a ser apresentada a todos os
                                     interessados dentro da interface da plataforma. {'\n'}{'\n'}
-                                    <Text style={[styles.termsText, {fontWeight: 'bold'}]}>15) Do foro</Text> {'\n'}
+                                    <Text style={[styles.termsText, {fontWeight: 'bold', fontSize: 15}]}>15) Do foro</Text> {'\n'}
                                     Para a solução de controvérsias decorrentes do presente instrumento será
                                     aplicado integralmente o Direito brasileiro.
                                     Os eventuais litígios deverão ser apresentados no foro da comarca em que se

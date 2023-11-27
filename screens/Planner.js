@@ -180,7 +180,7 @@ export default function Planner({navigation}){
             <View style={[styles.footer, theme.footerColor]}>
                 <PropsFooter function={()=>navigation.navigate('Home')} iconName='home' txt='Início' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
                 <PropsFooter function={()=>navigation.navigate('Alimentation')} iconName='food-drumstick' txt='Alimentar' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
-                <PropsFooter function={()=>navigation.navigate('Connection')} iconName='bluetooth-audio' txt='Conexão' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
+                <PropsFooter function={()=>navigation.navigate('Connection')} iconName='wifi' txt='Conexão' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
                 <PropsFooter function={()=>navigation.navigate('Planner')} iconName='calendar-month' txt='Calendário' iconColor='#ff9b4f' fontColor={theme.footerTxtColor}/>
             </View>
 

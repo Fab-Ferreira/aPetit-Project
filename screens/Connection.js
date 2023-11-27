@@ -38,7 +38,7 @@ export default function Connection({navigation}){
                     <Text style={[styles.statusText, {fontFamily: 'Montserrat-SemiBold'}, theme.color]}>{isConnected? 'On' : 'Off'}</Text>
 
                     <View style={[styles.statusColor, {backgroundColor: isConnected? '#64b500' : 'red'}]}>
-                        <MaterialCommunityIcons name={isConnected? 'bluetooth' : 'bluetooth-off'} size={21} color='white'/>
+                        <MaterialCommunityIcons name={isConnected? 'wifi' : 'wifi-off'} size={21} color='white'/>
                     </View>
                 </View>
             </View>
@@ -47,7 +47,7 @@ export default function Connection({navigation}){
             <View style={[styles.footer, theme.footerColor]}>
                 <PropsFooter function={()=>navigation.navigate('Home')} iconName='home' txt='Início' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
                 <PropsFooter function={()=>navigation.navigate('Alimentation')} iconName='food-drumstick' txt='Alimentar' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
-                <PropsFooter function={()=>navigation.navigate('Connection')} iconName='bluetooth-audio' txt='Conexão' iconColor='#ff9b4f' fontColor={theme.footerTxtColor}/>
+                <PropsFooter function={()=>navigation.navigate('Connection')} iconName='wifi' txt='Conexão' iconColor='#ff9b4f' fontColor={theme.footerTxtColor}/>
                 <PropsFooter function={()=>navigation.navigate('Planner')} iconName='calendar-month' txt='Calendário' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
             </View>
         </SafeAreaView>

@@ -173,7 +173,7 @@ export default function Home({navigation}){
                     fontColor={theme.footerTxtColor}/>
                 <PropsFooter 
                     function={()=>navigation.navigate('Connection')} 
-                    iconName='bluetooth-audio' 
+                    iconName='wifi' 
                     txt='Conexão'
                     iconColor='#28b2d6' 
                     fontColor={theme.footerTxtColor}/>
