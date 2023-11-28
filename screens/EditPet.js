@@ -372,7 +372,7 @@ export default function EditPet({navigation}){
                             <Text style={[styles.text, theme.color]}>Validade:</Text>
                         </View>
                         <TouchableOpacity style={[styles.birthdateInput, theme.borderColor]} onPress={()=>setShowExpirationDate(true)}>
-                            <Text style={[styles.birthdateText, theme.color]}>{snackInitialDate.toLocaleDateString().toString()}</Text>
+                            <Text style={[styles.birthdateText, theme.color]}>{snackExpirationDate.toLocaleDateString().toString()}</Text>
                         </TouchableOpacity>
 
                         {showBirthdate && (
