@@ -56,6 +56,28 @@ export default function Alimentation({navigation}){
         setShowTimePicker(false);
     }
 
+    const testConnection = () => {
+        var socket = new WebSocket('ws://192.168.100.77:81');
+        socket.onopen = () => {
+            console.log("Conexão WebSocket aberta");
+            
+            // Envio da mensagem após a conexão ser aberta
+            socket.send(amount);
+             // Evento chamado quando uma mensagem é recebida
+
+            // Evento chamado quando ocorre um erro
+            socket.onerror = (error) => {
+                console.error("Erro WebSocket:", error);
+                Alert.alert('Erro', 'Não foi possível estabelecer uma conexão com o circuito.')
+            };
+
+            // Evento chamado quando a conexão é fechada
+            socket.onclose = (event) => {
+                console.log("Conexão WebSocket fechada:", event);
+            };
+        };
+    }
+
     const confirmAction = () => {
         if(amount === '' || time === null){
             Alert.alert(
@@ -91,7 +113,7 @@ export default function Alimentation({navigation}){
                             [
                                 {
                                     text: 'OK',
-                                    onPress: ()=>navigation.navigate('Home')
+                                    onPress: testConnection,
                                 }
                             ],
                             {
@@ -122,7 +144,7 @@ export default function Alimentation({navigation}){
                     <Text style={[styles.label, theme.color]}>Informe a quantidade de ração e o horário para alimentar o seu pet</Text>
                     <View style={[styles.inputView, theme.borderColor]}>
                         <MaterialCommunityIcons name='food-drumstick' color={theme.iconColor} size={25}/>
-                        <Text style={[styles.text, {marginHorizontal: 10}, theme.color]}>Quantidade: </Text>
+                        <Text style={[styles.text, {marginHorizontal: 10}, theme.color]}>Quantidade (g): </Text>
                         <TextInput
                             style={[styles.text, theme.color, {flex: 1}]}
                             placeholder='em gramas'
@@ -135,10 +157,7 @@ export default function Alimentation({navigation}){
             
                     <View style={styles.inputTime}>
                         <MaterialCommunityIcons name='clock-outline' size={25} color={theme.iconColor}/>
-                        <Text style={[styles.text, {marginLeft: 10}, theme.color]}>Horário:</Text>
-                        <TouchableOpacity onPress={()=>setShowTimePicker(true)} style={[styles.timePicker, theme.borderColor, {flex: 1, marginLeft: 15}]}>
-                            <Text style={[styles.timePickerText, theme.color]}>{time.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})}</Text>
-                        </TouchableOpacity>
+                        <Text style={[styles.text, {marginLeft: 10}, theme.color]}>{`Horário: ${time.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})}`} </Text>
                     </View>
         
                     <TouchableOpacity style={styles.btn} onPress={confirmAction}>

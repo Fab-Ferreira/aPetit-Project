@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Dimensions, Image, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Dimensions, Image, SafeAreaView, ActivityIndicator, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import PropsFooter from '../assets/PropsFooter';
 import PropsHeader from '../assets/PropsHeader';
@@ -12,6 +12,7 @@ export default function Connection({navigation}){
 
     const[isConnected, setIsConnected] = useState(false);
     const[theme, setTheme] = useState(lightTheme);
+    const[isLoaded, setIsLoaded] = useState(false);
 
     useEffect(()=>{
         loadUserData();
@@ -24,15 +25,16 @@ export default function Connection({navigation}){
         const data = docSnapshot.data();
         
         setTheme(data.dark_theme? darkTheme : lightTheme);
+        setIsLoaded(true);
     }
 
     const testConnection = () => {
-        var socket = new WebSocket('ws://192.168.43.10:81');
+        var socket = new WebSocket('ws://192.168.100.77:81');
         socket.onopen = () => {
             console.log("Conexão WebSocket aberta");
             
             // Envio da mensagem após a conexão ser aberta
-            socket.send("conexao");
+            socket.send("100");
              // Evento chamado quando uma mensagem é recebida
             socket.onmessage = (event) => {
                 setIsConnected(true);
@@ -41,6 +43,7 @@ export default function Connection({navigation}){
             // Evento chamado quando ocorre um erro
             socket.onerror = (error) => {
                 console.error("Erro WebSocket:", error);
+                Alert.alert('Erro', 'Não foi possível estabelecer uma conexão com o circuito.')
             };
 
             // Evento chamado quando a conexão é fechada
@@ -50,10 +53,8 @@ export default function Connection({navigation}){
         };
     }
     
-    return(
-        <SafeAreaView style={[styles.container, theme.backgroundColor]}>
-            <PropsHeader btnFunc={()=>navigation.navigate('EditProfile')} icon='cog' bgColor={theme.headerColor}/>
-
+    const contentView = () => {
+        return(
             <View style={styles.content}>
                 {isConnected && (
                     <View style={[{borderWidth: 1, borderRadius: 15}, theme.borderColor]}>
@@ -67,11 +68,23 @@ export default function Connection({navigation}){
                         <MaterialCommunityIcons name={isConnected? 'wifi' : 'wifi-off'} size={21} color='white'/>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.btn} onPress={testConnection}>
+                <TouchableOpacity style={[styles.btn, {backgroundColor: isConnected? '#ffc89e' : '#ff9b4f'}]} onPress={testConnection} disabled={isConnected}>
                     <Text style={styles.btnText}>Conectar</Text>
                 </TouchableOpacity>
             </View>
-            
+        )
+    }
+
+    return(
+        <SafeAreaView style={[styles.container, theme.backgroundColor]}>
+            <PropsHeader btnFunc={()=>navigation.navigate('EditProfile')} icon='cog' bgColor={theme.headerColor}/>
+
+            {isLoaded? (contentView()) : (
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <ActivityIndicator size="large" color="#28b2d6" /> 
+                </View>
+            )}
+
             <View style={[styles.footer, theme.footerColor]}>
                 <PropsFooter function={()=>navigation.navigate('Home')} iconName='home' txt='Início' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
                 <PropsFooter function={()=>navigation.navigate('Alimentation')} iconName='food-drumstick' txt='Alimentar' iconColor='#28b2d6' fontColor={theme.footerTxtColor}/>
@@ -135,7 +148,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ff9b4f',
         height: 45,
         width: 220,
         borderRadius: 7,

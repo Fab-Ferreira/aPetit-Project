@@ -27,7 +27,7 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function Home({navigation}){
 
     const[isLoaded, setIsLoaded] = useState(false);
-    const[storageProgress, setStorageProgress] = useState(3);    
+    const[storageProgress, setStorageProgress] = useState(4);    
     const[pet, setPet] = useState(undefined);
     const[snack, setSnack] = useState(undefined);
     const[theme, setTheme] = useState(lightTheme);

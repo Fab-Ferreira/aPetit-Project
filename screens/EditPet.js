@@ -58,8 +58,6 @@ export default function EditPet({navigation}){
 
     useEffect(()=>{
         loadData();
-
-        console.log(snackExpirationDate.toLocaleDateString()); 
     },[]);
 
     const loadData = async() => {
@@ -172,6 +170,7 @@ export default function EditPet({navigation}){
                             }
                             await updateDoc(petDocRef, data);
                             navigation.navigate('LoadingScreen')
+                            console.log(snackExpirationDate)
                         }
                     }
                 ],
@@ -230,6 +229,7 @@ export default function EditPet({navigation}){
     const onChangeExpirationDate = ({type}, selectedDate) => {
         if(type == "set"){
             const currentDate = selectedDate;
+            console.log(currentDate);
             setSnackExpirationDate(currentDate);
         }
         setShowExpirationDate(false);
@@ -364,7 +364,9 @@ export default function EditPet({navigation}){
                             <Text style={[styles.text, theme.color]}>Reabastecimento:</Text>
                         </View>
                         <TouchableOpacity style={[styles.birthdateInput, theme.borderColor]} onPress={()=>setShowInitialDate(true)}>
-                            <Text style={[styles.birthdateText, theme.color]}>{snackInitialDate.toLocaleDateString().toString()}</Text>
+                            <Text style={[styles.birthdateText, theme.color]}>
+                                {snackInitialDate.toLocaleDateString().toString()}
+                            </Text>
                         </TouchableOpacity>
 
                         <View style={[styles.info, {borderBottomWidth: 0}]}>
@@ -372,7 +374,9 @@ export default function EditPet({navigation}){
                             <Text style={[styles.text, theme.color]}>Validade:</Text>
                         </View>
                         <TouchableOpacity style={[styles.birthdateInput, theme.borderColor]} onPress={()=>setShowExpirationDate(true)}>
-                            <Text style={[styles.birthdateText, theme.color]}>{snackExpirationDate.toLocaleDateString().toString()}</Text>
+                            <Text style={[styles.birthdateText, theme.color]}>
+                                {`${snackExpirationDate.getUTCDate() - 1}/${snackExpirationDate.getUTCMonth() + 1}/${snackExpirationDate.getUTCFullYear()}`}
+                            </Text>
                         </TouchableOpacity>
 
                         {showBirthdate && (
@@ -405,6 +409,7 @@ export default function EditPet({navigation}){
                                 onChange={onChangeExpirationDate}
                                 minimumDate={new Date()}
                                 cancelable={true}
+                                locale='pt-BR'
                             />
                         )}
                     </View>
