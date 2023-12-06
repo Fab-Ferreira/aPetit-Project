@@ -57,7 +57,7 @@ export default function Alimentation({navigation}){
     }
 
     const testConnection = () => {
-        var socket = new WebSocket('ws://192.168.100.77:81');
+        var socket = new WebSocket('ws://192.168.43.10:81');
         socket.onopen = () => {
             console.log("Conexão WebSocket aberta");
             

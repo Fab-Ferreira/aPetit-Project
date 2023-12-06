@@ -29,12 +29,12 @@ export default function Connection({navigation}){
     }
 
     const testConnection = () => {
-        var socket = new WebSocket('ws://192.168.100.77:81');
+        var socket = new WebSocket('ws://192.168.43.10:81');
         socket.onopen = () => {
             console.log("Conexão WebSocket aberta");
             
             // Envio da mensagem após a conexão ser aberta
-            socket.send("100");
+            socket.send("conexao");
              // Evento chamado quando uma mensagem é recebida
             socket.onmessage = (event) => {
                 setIsConnected(true);
